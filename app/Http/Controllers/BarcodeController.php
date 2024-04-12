@@ -23,6 +23,7 @@ class BarcodeController extends Controller
         $totalActualizado = productoventa::where('venta_id', $venta->id_venta)
                                       ->sum('subtotal');
         $venta->total = $totalActualizado;
+        
         $venta->save();
         $producto = producto::all();
         return view('barcode',['producto'=>$producto,'venta'=>$venta,'productoventa'=>$productoventa]);
@@ -54,6 +55,8 @@ class BarcodeController extends Controller
         }
         return redirect()->route('barcode');
     }
+
+    
     function finishbarcode(request $request){
         $id = $request->input('id_venta');
         $metodo = $request->input('metodo_de_pago');
@@ -61,6 +64,7 @@ class BarcodeController extends Controller
         $venta->metodo_de_pago = $metodo;
         $venta->finalizada = true;
         $venta->abierta = false;
+        $venta->fecha = today();
         $venta->save();
         return redirect()->route('barcode');
     }

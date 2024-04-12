@@ -1,5 +1,5 @@
 .body{
-   
+   background-color: #B3C8CF;
     display: flex;
     flex-direction: column;
 }
@@ -14,11 +14,18 @@
 }
 
 .navbar{
-    background-color: red;
+    background-color: #B3C8CF;
     padding: 15px 20px 15px 20px;
 }
 
-
+.btn-danger{
+    border-color: #FA7070 !important;
+    background-color: #FA7070 !important
+}
+.btn-warning{
+    border-color: #B3C8CF !important;
+    background-color: #E5DDC5 !important;
+}
 .principal{
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
@@ -36,14 +43,15 @@
 }
 
 .ventas{
-    display: flex;
+    
     flex-direction: column;
-    align-items: center;
+
     justify-content: flex-start;
     padding: 0 35px 0 0;
     gap: 20px;
     width: 100%;
     height: 100%;
+    text-align: center;
 }
 
 .col{
@@ -115,6 +123,12 @@
     gap: 15px;
 }
 
+li{
+
+    display: inline;
+    margin: 10px 10px 10px 20px;
+}
+
 .discount{
     display: flex;
     justify-content: flex-start;
@@ -126,7 +140,7 @@
     gap: 10px;
 }
 .inventario{
-    padding: 30px 20px 20px 20px;
+    
     
     justify-content: center;
     width: 100%;
@@ -160,7 +174,90 @@
     background-color: #45a049; /* Cambia el color de fondo al pasar sobre el botón */
   }
   .central{
+    align-self: center;
+  }
+  .clientes{
     padding: 20px;
-    margin: 20px;
+    margin: 10px;
+    display: flex;
+    /*display: flex;*/
   }
   
+  .card{
+    margin: 10px;
+    padding: 30px;
+    box-sizing: border-box !important;
+    background-color: #e6e6e6 !important;
+  }
+
+
+
+  .prueba1{
+    border-style: solid;
+    border-width: thick;
+    border-color: #B3C8CF;
+    border-radius: 25px;
+    height: fit-content;
+    width: 300px;
+    text-align: center;
+    margin: 10px;
+    padding: 30px;
+  }
+  .clientes1{
+    text-align: center;
+    height: 140px;
+    width: 800px;
+    overflow: scroll;
+margin-left: 20px;
+    padding: 10px;
+    border-style: dashed;
+    border-width: thick;
+    border-color: #B3C8CF;
+    border-radius: 25px;
+
+  }
+
+  .formularios{
+    border-style: solid;
+    border-color: #E5DDC5 ;
+    margin: 10px;
+    padding: 10px;
+   border-radius: 25px;
+background-color: #E5DDC5;
+
+  }
+
+  .formularios:hover{
+    background-color: #B3C8CF;
+    border-color: #B3C8CF;
+   
+  }
+
+.items1, .items{
+    text-align: center;
+    padding: 10px;
+}
+
+.encabezados{
+    border-style: solid;
+    border-color: #45a049;
+    text-align: center;
+}
+
+.items1:hover{
+   
+    
+    border: 1px solid #ccc;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
+}
+
+.infoclient{
+    width: 400px;
+}
+.modal-footer{
+text-align: center !important;
+}
+.card{
+    padding: 20px !important;
+    text-align: center;
+}

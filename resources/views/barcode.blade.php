@@ -9,11 +9,11 @@
     <section class="ventas">
     
         <h2>Pedidos</h2>
-        <div class="pedidosN">
+        <div class="card" style="text-align: initial;">
             <form class="form-control" action="/addingbarcode" method="post">
                 @csrf
 
-                
+                <label for="">Seleccione</label>
                 <select  class="form-select" name="producto" id="">
                 
                     @foreach ($producto as $i)
@@ -40,28 +40,29 @@
             
         </div>
     </section>
-    <section class="items">
-        <h2>Productos</h2>
-        <table class="table table-borderless">
-             <thead>
-                <tr>
-                    <th scope="col">producto</th>
-                    <th scope="col">Cantidad</th>
-                    <th scope="col">Total</th>
-                    <th scope="col">eliminar</th>
+    <section class="">
+        <h2 style="text-align: center">Productos</h2>
+        <div class="card" >
+        <table class="">
+             <thead class="encabezados">
+                <tr >
+                    <th style="font-size: 20px" scope="col" class="items">producto</th>
+                    <th style="font-size: 20px" scope="col" class="items">Cantidad</th>
+                    <th style="font-size: 20px" scope="col" class="items">Total</th>
+                    <th style="font-size: 20px" scope="col" class="items">eliminar</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($productoventa as $i)
-                <tr>
-                    <td>{{$i->producto->nombre}}</td>
-                    <td>{{ $i->cantidad }}</td>
-                    <td>${{ $i->subtotal }}</td>
-                    <td> 
+                <tr  class="items1" >
+                    <td class="items">{{$i->producto->nombre}}</td>
+                    <td class="items">{{ $i->cantidad }} kg</td>
+                    <td class="items">${{ $i->subtotal }}</td>
+                    <td class="items"> 
                         <form action="deletebarcode/{{$i->id}}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit">Eliminar</button>
+                            <button onclick="return confirmar()" type="submit">Eliminar</button>
                         </form>      
                     </td>
                 </tr>
@@ -69,23 +70,49 @@
             </tbody>
             
         </table>
-        
+    </div> 
     
     </section>
-    <section class="cobro">
+    <section class="cobro" style="text-align: center" !important;>
 
-        <form method="POST" action="/finishbarcode">
-           @csrf
-            <h1>Total: ${{$venta->total}} </h1>
-            <input  type="hidden" name="id_venta"  value="{{$venta->id_venta}}">
-            <select name="metodo_de_pago" class="form-select" aria-label="Método de Pago">
-                <option value="efectivo">Efectivo</option>
-                <option value="tarjeta">Tarjeta</option>
-                <option value="transferencia">Transferencia</option>
-            </select>
-            <div class="botoncobro">
-            <button type="submit" class="btn btn-danger btn-block">Cobrar</button>
-        </form>
+        <h2>Total</h2>
+        <h3 id="totalVenta" data-total="{{ $venta->total }}">{{$venta->total}}</h3>
+
+
+        <button type="button" class="btn btn-danger btn-block" data-bs-toggle="modal" data-bs-target="#modalCobro">
+            Cobrar
+          </button>
+        <div class="modal fade" id="modalCobro" tabindex="-1" aria-labelledby="modalCobroLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="modalCobroLabel">Cobro</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form id="formCobro" method="POST" action="/finishbarcode">
+                    @csrf
+                    <input type="hidden" name="id_venta" value="{{$venta->id_venta}}">
+                    <select name="metodo_de_pago" class="form-select" aria-label="Método de Pago">
+                        <option value="efectivo">Efectivo</option>
+                        <option value="tarjeta">Tarjeta</option>
+                        <option value="transferencia">Transferencia</option>
+                    </select>
+                    <label for="cantidad_recibida">Cantidad recibida:</label>
+                    <input type="number" class="form-control" id="cantidad_recibida" name="cantidad_recibida"
+                    oninput="calcularCambio()">
+                                 <p>Cambio: <span id="cambio">0</span></p>
+
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                  <button type="submit" onclick="return Finalizar()" form="formCobro" class="btn btn-danger">Finalizar venta</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
     </div>
 
    

@@ -6,55 +6,45 @@
 @section('content')
 
 
-<main class="principal">
-    <section class="ventas">
-        <form action="" method="post">
-        @csrf
-            <label for="">Cliente</label>
-            <select class="form-select" name="cliente" id="">
-               
-                    <option>Belinda</option>
-         
-            </select>
-            <label for="">Escoja el producto</label>
-            <select class="form-select" name="producto" id="">
-          
-            
-                    <option >Producto 1</option>
-                    <option >Producto 2</option>
-                
-            </select>
-            <label for="">Ingrese el precio preferencial</label>
-            <input name="precio" value="" class="form-control" type="number">
-            <button type="submit" class="btn btn-outline-primary" >Aplicar</button>
-        </form>
+<main class="clientes">
+    <section class="">
+        <div class="card">
+            <ul>
+               <h5>Dar de alta a un cliente nuevo</h5>
+            </ul>
+            <ul>
+                <a class="btn btn-light" type="button" href="/editing">Nuevo</a>
+            </ul>
+        </div>
+        <div class="card">
+            <ul>
+                <h5>Estado de cuentas</h5>
+            </ul>
+            <ul><a href="http://">Más Información</a></ul>
+        </div>
     </section>
-    <section class="items">
-        
-        <table class="table table-borderless">
-            <thead >
-                <th>Cliente</th>
-                <th>Nombre</th>
-                <th>Dirección</th>
-                <th>Telefono</th>
+
+    <section class="">
+        <div class="card">
+        <table class="">
+            <thead class="encabezados">
+                <th class="items" style="font-size: 20px">Cliente</th>
+                <th class="items" style="font-size: 20px">Nombre</th>
+                <th class="items" style="font-size: 20px">Más Información</th>
             </thead>
             <tbody>
-                
-                <tr>
-                    <td>Belinda Monserrat Encino Castillo</td>
-                    <td>Beli</td>
-                    <td>Reforma, Chiapas</td>
-                    <td>99223637281</td>
+                @foreach ($clientes as $cliente)
+                <tr class="items1">
+                    <td class="items">{{$cliente->nickname}}</td>
+                    <td class="items">{{$cliente->name}}</td>
+                    <td class="items"><a type="button" class="btn btn-warning" href="/infoclient/{{$cliente->id}}">info</a></td>
                 </tr>
-               
+                @endforeach
             </tbody>
         </table>
-
+    </div>
     </section>
-    <section class="cobro">
-        <p>Dar de alta a un cliente nuevo</p>
-        <a class="btn btn-light" type="button" href="/editing">Nuevo</a>
-    </section>
+   
    
 </main>
 

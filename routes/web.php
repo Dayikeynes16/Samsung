@@ -43,6 +43,10 @@ route::controller(BarcodeController::class)->group(function(){
 route::controller(DescuentosController::class)->group(function(){
     route::get('/descuentos','descuentos')->name('descuentos');
     route::get('/editing','editing')->name('editig');
+    route::post('/savingclient','savingclient')->name(('savingclient'));
+    route::get('/infoclient/{id}', 'infoclient')->name('infoclient');
+    route::post('/savediscount','savediscount')->name('savediscount');
+    route::post('/deletediscount','deletediscount')->name('deletediscount');
 });
 
 
