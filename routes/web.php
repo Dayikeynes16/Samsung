@@ -29,6 +29,7 @@ route::controller(HomeController::class)->group(function(){
     route::get('/login','login')->name('login');
 });
 
+
 route::controller(ReportesController::class)->group(function(){
     route::get('/reportes','reportes')->name('reportes');
 });
@@ -38,6 +39,7 @@ route::controller(BarcodeController::class)->group(function(){
     route::post('/addingbarcode','addingbarcode')->name('addingbarcode');
     route::delete('/deletebarcode/{id}','deletebarcode')->name('deletebarcode');
     route::post('/finishbarcode','finishbarcode')->name('finishbarcode');
+    route::post('/aplydiscount', 'aplydiscount')->name('aplydiscount');
 });
 
 route::controller(DescuentosController::class)->group(function(){

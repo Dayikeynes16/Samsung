@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\clientes;
+use App\Models\precioespecial;
 use Illuminate\Http\Request;
 use App\Models\producto;
 use App\Models\productoventa;
 use App\Models\venta;
+use LaravelJsonApi\Eloquent\Filters\Where;
+use Psy\Readline\Hoa\Console;
 
 class BarcodeController extends Controller
 {
@@ -25,8 +29,9 @@ class BarcodeController extends Controller
         $venta->total = $totalActualizado;
         
         $venta->save();
+        $clientes = clientes::all();
         $producto = producto::all();
-        return view('barcode',['producto'=>$producto,'venta'=>$venta,'productoventa'=>$productoventa]);
+        return view('barcode',['producto'=>$producto,'venta'=>$venta,'productoventa'=>$productoventa, 'clientes'=>$clientes]);
     }
 
     function addingbarcode(request $request){
@@ -68,5 +73,37 @@ class BarcodeController extends Controller
         $venta->save();
         return redirect()->route('barcode');
     }
-}
+  
+    function aplydiscount(Request $request) {
+        $clienteId = $request->input('cliente_id');
+        $ventaId = $request->input('id_venta');
+        $venta = Venta::find($ventaId);
+        if (!$venta) {
+            return back()->with('error', 'La venta no existe.');
+        }
+        $cliente = clientes::find($clienteId);
+        if (!$cliente) {
+            return back()->with('error', 'El cliente no existe.');
+        }
+        $productosVenta = ProductoVenta::where('venta_id', $ventaId)->get();
+        print($productosVenta);
+        foreach ($productosVenta as $productoVenta) {
+            $precioEspecial = PrecioEspecial::where('cliente_id', $clienteId)
+                                            ->where('producto_id', $productoVenta->producto_id)
+                                            ->first();
+            if ($precioEspecial) {
+                $productoVenta->subtotal = $precioEspecial->precio_especial * $productoVenta->cantidad;
+                $productoVenta->save();
+            }
+        }
+        $nuevoTotal = $productosVenta->sum(function ($producto) {
+            return $producto->subtotal;
+        });
+        $venta->total = $nuevoTotal;
+        $venta->save();
+    
+        return back()->with('success', 'Descuento aplicado correctamente.');
+    }
+    }
+
 
