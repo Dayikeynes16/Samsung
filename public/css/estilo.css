@@ -257,3 +257,18 @@ background-color: #E5DDC5;
 .modal-footer{
 text-align: center !important;
 }
+
+#ordenes{
+    margin: 10px;
+    height: 60px;
+    padding: 10px;
+    width: 180px;
+}
+
+.reports{
+    height: 550px;
+    overflow: scroll;
+    width: 100%;
+    display: inline-grid;
+    
+}

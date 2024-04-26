@@ -30,13 +30,7 @@
                 <button class="btn btn-warning" type="submit">Enviar</button>
             </form>
 <br>
-            <form class="form-control" action="" method="post">
-                @csrf
-                <label for="codigo_barras">Código de Barras:</label>
-                <input class="form-control" type="text" id="codigo_barras" name="codigo_barras" required, autofocus>
-                <br>
-                <button class="btn btn-warning" type="submit">Agregar Producto</button>
-            </form>
+           
             
         </div>
     </section>

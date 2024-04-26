@@ -20,8 +20,10 @@
      
            
         
-        <div class="card">
+        <div class="card" >
             <h2 style="text-align: center">Ventas del dia</h2>
+            <div class="reports">
+
             <table>
                 <thead class="encabezados">
                     <tr>
@@ -39,28 +41,34 @@
                         </th class="items" style="font-size: 20px" scope="col">
                     </tr>
                 </thead>
+                
                 <tbody>
-                    @foreach ($ventas as $venta)
-                <tr class="items1"  scope="row">
-                    <td class="items">
-                        {{$venta->id_venta}}
-                    </td>
-                    <td class="items">
-                        {{$venta->total}}
-                    </td>
-                    <td class="items">
-                        {{$venta->metodo_de_pago}}
-                    </td>
-                    <td class="items">
-                        {{$venta->fecha}}
-                    </td>
-                </tr>
+                    
+
+                            
+                            @foreach ($ventas as $venta)
+                        <tr class="items1"  scope="row">
+                            <td class="items">
+                                {{$venta->id_venta}}
+                            </td>
+                            <td class="items">
+                                {{$venta->total}}
+                            </td>
+                            <td class="items">
+                                {{$venta->metodo_de_pago}}
+                            </td>
+                            <td class="items">
+                                {{$venta->fecha}}
+                            </td>
+                        </tr>
                 @endforeach
-               
+            
 
                 </tbody>
+         
+
             </table>
-            
+        </div>
                 
           
 

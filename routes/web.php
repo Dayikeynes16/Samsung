@@ -29,6 +29,7 @@ route::controller(HomeController::class)->group(function(){
     route::get('/login','login')->name('login');
 });
 
+Route::get('/get-ventas', [HomeController::class, 'getVentasAjax'])->name('get.ventas');
 
 route::controller(ReportesController::class)->group(function(){
     route::get('/reportes','reportes')->name('reportes');

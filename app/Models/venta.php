@@ -19,11 +19,9 @@ class venta extends Model
         return $this->hasMany(ProductoVenta::class, 'venta_id');
     }
     protected $primaryKey = 'id_venta';
-    public function productos()
-{
+
+    public function productos(){
     return $this->belongsToMany(Producto::class, 'ProductoVenta', 'venta_id', 'producto_id')
-                ->withPivot('cantidad', 'subtotal');
-    
-}
+                ->withPivot('cantidad', 'subtotal');}
 
 }

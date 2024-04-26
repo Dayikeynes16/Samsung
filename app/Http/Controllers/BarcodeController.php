@@ -70,8 +70,9 @@ class BarcodeController extends Controller
         $venta->finalizada = true;
         $venta->abierta = false;
         $venta->fecha = today();
+        $venta->operador = 0;
         $venta->save();
-        return redirect()->route('barcode');
+        return redirect()->back();
     }
   
     function aplydiscount(Request $request) {
