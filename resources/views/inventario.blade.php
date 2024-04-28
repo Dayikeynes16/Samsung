@@ -47,6 +47,8 @@
       <h3>Agregar un producto nuevo</h3>
         <form method="POST"  action="/addproduct">
           @csrf
+            <label for="">Ingrese el codigo</label>
+            <input class="form-control" type="number" name="codigo">
             <label for="">Ingrese un Nombre</label>
             <input  class="form-control" @error('nombre') is-invalid @enderror type="text" name="nombre" id="">
              @error('nombre')

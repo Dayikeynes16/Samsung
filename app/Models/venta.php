@@ -5,23 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class venta extends Model
+class Venta extends Model  
 {
     use HasFactory;
-    protected $fillable = ['operador','finalizada','total', 'abierta','metodo_de_pago', 'fecha'];
+    protected $fillable = ['operador', 'total', 'abierta', 'finalizada', 'metodo_de_pago', 'fecha'];
 
-    protected $table = 'Venta';
-
+    protected $table = 'ventas';  
     public $timestamps = false;
 
     public function productoventas()
     {
         return $this->hasMany(ProductoVenta::class, 'venta_id');
     }
-    protected $primaryKey = 'id_venta';
 
     public function productos(){
-    return $this->belongsToMany(Producto::class, 'ProductoVenta', 'venta_id', 'producto_id')
-                ->withPivot('cantidad', 'subtotal');}
-
+        return $this->belongsToMany(Producto::class, 'producto_ventas', 'venta_id', 'producto_id')
+                    ->withPivot('cantidad', 'subtotal');
+    }
 }

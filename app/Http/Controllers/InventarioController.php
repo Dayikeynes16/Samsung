@@ -32,6 +32,7 @@ class InventarioController extends Controller
         $validatedData = $request->validated();
         
         $producto = new producto([
+            'codigo' => $request->input('codigo'),
             'nombre' => $request->input('nombre'),
             'precio' => $request->input('precio'),
         ]);
