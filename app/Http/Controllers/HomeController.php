@@ -19,7 +19,6 @@ class HomeController extends Controller
 
         $clientes = clientes::all();
     
-        // Creando un array estructurado como lo deseas, incluyendo el nombre del producto
         $ventasArray = $ventas->map(function ($venta) {
             return [
                 'id_venta' => $venta->id,

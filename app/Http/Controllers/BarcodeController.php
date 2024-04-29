@@ -8,8 +8,10 @@ use Illuminate\Http\Request;
 use App\Models\producto;
 use App\Models\productoventa;
 use App\Models\venta;
+use DateTime;
 use LaravelJsonApi\Eloquent\Filters\Where;
 use Psy\Readline\Hoa\Console;
+use Carbon\Carbon;
 
 class BarcodeController extends Controller
 {
@@ -23,15 +25,16 @@ class BarcodeController extends Controller
                 'metodo_de_pago' => 'efectivo' 
             ]
         );
-        $productoventa = productoventa::where('venta_id',$venta->id_venta)->get();
-        $totalActualizado = productoventa::where('venta_id', $venta->id_venta)
+        $productoventa = productoventa::where('venta_id',$venta->id)->get();
+        $totalActualizado = productoventa::where('venta_id', $venta->id)
                                       ->sum('subtotal');
         $venta->total = $totalActualizado;
         
         $venta->save();
         $clientes = clientes::all();
         $producto = producto::all();
-        return view('barcode',['producto'=>$producto,'venta'=>$venta,'productoventa'=>$productoventa, 'clientes'=>$clientes]);
+        $hora = Carbon::now();;
+        return view('barcode',['producto'=>$producto,'venta'=>$venta,'productoventa'=>$productoventa, 'clientes'=>$clientes,'hora'=>$hora]);
     }
 
     function addingbarcode(request $request){
@@ -44,7 +47,7 @@ class BarcodeController extends Controller
         $producto = producto::find($idproducto);
         $subtotal = $producto->precio*$peso;
         $productoventa =  productoventa::create([
-            'venta_id'=>$venta->id_venta,
+            'venta_id'=>$venta->id,
             'producto_id'=>$idproducto,
             'cantidad'=>$peso,
             'subtotal'=>$subtotal,
@@ -64,12 +67,13 @@ class BarcodeController extends Controller
     
     function finishbarcode(request $request){
         $id = $request->input('id_venta');
+        print($id);
         $metodo = $request->input('metodo_de_pago');
         $venta = venta::find($id);
         $venta->metodo_de_pago = $metodo;
         $venta->finalizada = true;
         $venta->abierta = false;
-        $venta->fecha = today();
+        $venta->fecha = now();
         $venta->operador = 0;
         $venta->save();
         return redirect()->back();
@@ -101,6 +105,7 @@ class BarcodeController extends Controller
             return $producto->subtotal;
         });
         $venta->total = $nuevoTotal;
+        $venta->cliente = $clienteId;
         $venta->save();
     
         return back()->with('success', 'Descuento aplicado correctamente.');

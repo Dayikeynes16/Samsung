@@ -30,6 +30,10 @@
             @method('DELETE')
               <button onclick="return confirmar()" class="btn btn-danger" type="submit">Eliminar</button></form>
           </th>
+          <th>
+         <a type="button" class="btn btn-primary" href="editproduct/{{$i->codigo}}">Editar</a>
+
+          </th>
         
 
         </tr>

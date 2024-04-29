@@ -99,7 +99,7 @@
                                 @csrf
                                 <select class="form-select" name="cliente_id" id="clienteSelect">
                                     @foreach ($clientes as $cliente)
-                                        <option value="{{ $cliente->id }}">{{ $cliente->name }}</option>
+                                        <option value="{{ $cliente->id }}">{{ $cliente->nombre }}</option>
                                     @endforeach
                                 </select>
                                 <button type="submit" class="btn btn-danger mt-3">Aplicar Descuento</button>

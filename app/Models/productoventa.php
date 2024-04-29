@@ -23,4 +23,5 @@ class ProductoVenta extends Pivot
     {
         return $this->belongsTo(Venta::class, 'venta_id');
     }
+    
 }

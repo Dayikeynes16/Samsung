@@ -40,4 +40,19 @@ class InventarioController extends Controller
         
         return redirect()->route('inventario');
     }
+    function editproduct ($codigo){
+        $producto = producto::find($codigo);
+        return view('editproduct',['producto'=>$producto]);
+    }
+
+    function saveproduct (request $request){
+        $codigo = $request->input('codigo');
+        $nombre = $request->input('nombre');
+        $precio = $request->input('precio');
+        $producto = producto::find($codigo);
+        $producto->nombre =  $nombre;
+        $producto->precio = $precio;
+        $producto->save();
+        return redirect()->route('inventario');
+    }
 }

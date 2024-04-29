@@ -96,11 +96,11 @@
                 <div class="modal-body">
                   <form id="formCobro" method="POST" action="/finishbarcode">
                     @csrf
-                    <input type="hidden" name="id_venta" value="{{$venta->id_venta}}">
+                    <input type="hidden" name="id_venta" value="{{$venta->id}}">
                     <select name="metodo_de_pago" class="form-select" aria-label="Método de Pago">
-                        <option value="efectivo">Efectivo</option>
-                        <option value="tarjeta">Tarjeta</option>
-                        <option value="transferencia">Transferencia</option>
+                        <option value="Efectivo">Efectivo</option>
+                        <option value="Tarjeta">Tarjeta</option>
+                        <option value="Transferencia">Transferencia</option>
                     </select>
                     <label for="cantidad_recibida">Cantidad recibida:</label>
                     <input type="number" class="form-control" id="cantidad_recibida" name="cantidad_recibida"
@@ -131,11 +131,11 @@
                         @csrf
                         <select class="form-select" name="cliente_id" id="clienteSelect">
                             @foreach ($clientes as $cliente)
-                            <option value="{{ $cliente->id }}">{{ $cliente->name }}</option>
+                            <option value="{{ $cliente->id }}">{{ $cliente->nombre }}</option>
                             @endforeach
                         </select>
                         <button type="submit" class="btn btn-danger mt-3">Aplicar Descuento</button>
-                        <input type="hidden" name="id_venta" value="{{$venta->id_venta}}">
+                        <input type="hidden" name="id_venta" value="{{$venta->id}}">
                     </form>
                 </div>
                 <div class="modal-footer">

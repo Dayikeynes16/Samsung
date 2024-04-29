@@ -34,28 +34,31 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function createButtonsForVentas(ventas) {
         let listaPedidos = document.getElementById('listaPedidos');
+        if (!listaPedidos) {
+            console.error('El elemento listaPedidos no existe en el DOM.');
+            return;
+        }
         listaPedidos.innerHTML = '';
-
+    
         ventas.forEach((venta, index) => {
             let listItem = document.createElement('li');
             let button = document.createElement('button');
             button.id = 'ordenes';
             button.className = 'btn btn-primary btn-block';
             button.style.backgroundColor = 'orange';
-            button.textContent = `Pedido ${index + 1}: Venta ID ${venta.id_venta}`;
+            button.textContent = `Pedido ${index + 1}: Venta ID ${venta.id}`;
             button.dataset.ventaId = venta.id_venta; 
-
-           
+    
             button.addEventListener('click', () => {
-                displayProductos(venta.productoventas, venta.total, venta.id_venta);
-                
-                updateFormIds(venta.id_venta);
+                displayProductos(venta.productoventas, venta.total, venta.id);
+                updateFormIds(venta.id);
             });
-
+    
             listItem.appendChild(button);
             listaPedidos.appendChild(listItem);
         });
     }
+    
     
     function displayProductos(productos, totalVenta, ventaId) {
         let productosTableBody = document.getElementById('productosTableBody');

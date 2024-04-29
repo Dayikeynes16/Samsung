@@ -10,12 +10,22 @@
         <div class="infoclient">
             <div class="card">
                 
-                <h4>Nombre: {{$cliente->name}}</h4>
+                <h4>Nombre: {{$cliente->nombre}}</h4>
                 <h4>Sobrenombre: {{$cliente->nickname}}</h4>
                 <h4>Telefono: {{$cliente->telefono}}</h4>
                 <h4>Dirección {{$cliente->direccion}}</h4>   
             </div>
             <div class="card">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <form method="POST" style="text-align: center"  action="/savediscount">
                     @csrf
                     <input type="hidden" name="cliente" value="{{$cliente->id}}" id="">
@@ -37,6 +47,8 @@
 
     <div class="card" style="width: 800px !important">
         <table >
+            <h3 style="padding-left:20px; color: midnightblue">Descuentos actuales</h3>
+
             <thead class="encabezados">
                 <th class="items" style="font-size: 20px">Producto</th>
                 <th class="items" style="font-size: 20px">Precio Original</th>
@@ -57,12 +69,7 @@
                         </td>
                         
                         <td style="display: flex;">
-                            <form action="">
-                                @csrf
-                                <input type="hidden" name="cliente" value="{{$precioespecial->cliente_id}}" id="">
-                                <input type="hidden" name="producto" value="{{$precioespecial->producto_id}}" id="">
-                                <button style="margin-right:10px " type="submit" class="btn btn-warning">Editar</button>
-                            </form>
+                           
                             <form  action="/deletediscount" method="POST">
                                 @csrf
                                 
@@ -75,6 +82,51 @@
                 @endforeach
             </tbody>
         
+        </table>
+    </div>
+    <div class="card">
+        <table>
+            <h3 style="padding-left:20px; color: midnightblue">Ventas del cliente</h3>
+
+            <thead class="encabezados">
+                <th class="items" style="font-size: 20px">
+                    Venta
+                </th>
+                <th class="items" style="font-size: 20px">
+                    Fecha
+                </th>
+                <th class="items" style="font-size: 20px">
+                    Total
+                </th>
+                <th class="items" style="font-size: 20px">
+                    detalles
+                </th>
+
+            </thead>
+            
+                
+            
+            <tbody>
+                @foreach ($ventas as $i)
+                <tr class="items1">
+                    <td class="items">
+                        {{$i->id}}
+    
+                    </td>
+                    <td class="items">
+                        {{$i->fecha}}
+                    </td>
+                    <td class="items">
+                        {{$i->total}}
+                    </td>
+                    <td class="items">
+                       
+                        <a type="button" class="btn btn-warning" href="/ventadetalles/{{$i->id}}">Información</a>
+                    </td>
+
+                </tr>
+                @endforeach
+            </tbody>
         </table>
     </div>
    

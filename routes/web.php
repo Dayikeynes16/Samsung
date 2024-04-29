@@ -48,7 +48,10 @@ route::controller(DescuentosController::class)->group(function(){
     route::get('/editing','editing')->name('editig');
     route::post('/savingclient','savingclient')->name(('savingclient'));
     route::get('/infoclient/{id}', 'infoclient')->name('infoclient');
+    route::post('/deleteclient/{id}','deleteclient')->name('deleteclient');
+    route::post('/editclient/{id}','editclient')->name('editclient');
     route::post('/savediscount','savediscount')->name('savediscount');
+    route::get('/ventadetalles/{id}','ventadetalles')->name('ventadetalles');
     route::post('/deletediscount','deletediscount')->name('deletediscount');
 });
 
@@ -58,6 +61,8 @@ route::controller(InventarioController::class)->group(function(){
     route::get('/adding','adding')->name('adding');
     route::post('/addproduct','addproduct')->name('addproduct');
     route::delete('/deleteitem/{id}','deleteitem')->name('deleteitem');
+    route::get('/editproduct/{id}','editproduct')->name('editproduct');
+    route::post('/saveproduct','saveproduct')->name('saveproduct');
 });
 
 Route::post('/ventas', [VentaController::class, 'store']);

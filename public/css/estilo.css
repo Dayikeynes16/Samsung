@@ -20,11 +20,18 @@
 
 .btn-danger{
     border-color: #FA7070 !important;
-    background-color: #FA7070 !important
+    background-color: #FA7070 !important;
+    margin: 8px !important;
 }
 .btn-warning{
     border-color: #B3C8CF !important;
     background-color: #E5DDC5 !important;
+    margin: 8px !important;
+}
+.btn-primary{
+    border-color: #E5DDC5 !important;
+    background-color: #5BBCFF !important;
+    margin: 8px !important;
 }
 .principal{
     display: grid;
@@ -224,6 +231,10 @@ margin-left: 20px;
     padding: 10px;
    border-radius: 25px;
 background-color: #E5DDC5;
+text-align: start;
+
+
+
 
   }
 
@@ -272,3 +283,4 @@ text-align: center !important;
     display: inline-grid;
     align-content: baseline;
 }
+
