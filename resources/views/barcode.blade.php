@@ -30,13 +30,7 @@
                 <button class="btn btn-warning" type="submit">Enviar</button>
             </form>
 <br>
-            <form class="form-control" action="" method="post">
-                @csrf
-                <label for="codigo_barras">Código de Barras:</label>
-                <input class="form-control" type="text" id="codigo_barras" name="codigo_barras" required, autofocus>
-                <br>
-                <button class="btn btn-warning" type="submit">Agregar Producto</button>
-            </form>
+           
             
         </div>
     </section>
@@ -76,12 +70,22 @@
     <section class="cobro" style="text-align: center" !important;>
 
         <h2>Total</h2>
+        <div class="card">
         <h3 id="totalVenta" data-total="{{ $venta->total }}">{{$venta->total}}</h3>
 
-
-        <button type="button" class="btn btn-danger btn-block" data-bs-toggle="modal" data-bs-target="#modalCobro">
+        
+            <button type="button" class="btn btn-danger btn-block" data-bs-toggle="modal" data-bs-target="#modalCobro">
             Cobrar
           </button>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalDescuento">
+            Aplicar Descuento
+        </button>
+        
+
+        </div>
+        
+
+
         <div class="modal fade" id="modalCobro" tabindex="-1" aria-labelledby="modalCobroLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -92,11 +96,11 @@
                 <div class="modal-body">
                   <form id="formCobro" method="POST" action="/finishbarcode">
                     @csrf
-                    <input type="hidden" name="id_venta" value="{{$venta->id_venta}}">
+                    <input type="hidden" name="id_venta" value="{{$venta->id}}">
                     <select name="metodo_de_pago" class="form-select" aria-label="Método de Pago">
-                        <option value="efectivo">Efectivo</option>
-                        <option value="tarjeta">Tarjeta</option>
-                        <option value="transferencia">Transferencia</option>
+                        <option value="Efectivo">Efectivo</option>
+                        <option value="Tarjeta">Tarjeta</option>
+                        <option value="Transferencia">Transferencia</option>
                     </select>
                     <label for="cantidad_recibida">Cantidad recibida:</label>
                     <input type="number" class="form-control" id="cantidad_recibida" name="cantidad_recibida"
@@ -114,6 +118,33 @@
           </div>
           
     </div>
+
+    <div class="modal fade" id="modalDescuento" tabindex="-1" aria-labelledby="modalDescuentoLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalDescuentoLabel">Aplicar Descuento</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/aplydiscount" method="POST">
+                        @csrf
+                        <select class="form-select" name="cliente_id" id="clienteSelect">
+                            @foreach ($clientes as $cliente)
+                            <option value="{{ $cliente->id }}">{{ $cliente->nombre }}</option>
+                            @endforeach
+                        </select>
+                        <button type="submit" class="btn btn-danger mt-3">Aplicar Descuento</button>
+                        <input type="hidden" name="id_venta" value="{{$venta->id}}">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 
    
 

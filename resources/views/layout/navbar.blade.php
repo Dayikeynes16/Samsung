@@ -20,7 +20,7 @@
                 <a type="button" class="btn btn-warning" href="/welcome">Ventas digitales</a>
               </li>
               <li>
-                <a type="button" class="btn btn-warning" href="/barcode">Cobro con barras</a>
+                <a type="button" class="btn btn-warning" href="/barcode">Cobro manual</a>
               </li>
               <li>
                 <a type="button" class="btn btn-warning" href="/descuentos">Descuento</a>

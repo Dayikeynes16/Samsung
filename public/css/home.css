@@ -1,0 +1,25 @@
+.homepage{
+    background-color: beige;
+    text-align: center;
+}
+.nav-home{
+    height: 60px;
+    background-color: bisque;
+    text-align: right;
+    
+}
+.nav-items{
+    padding: 10px;
+}
+.imagehome {
+    height: 400px;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0) 20%, white 90%), url(img/comida-al-vacio_1024x1024.webp);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+   text-align: center;
+}
+.espectacular{
+    padding-top: 60px;
+    font-size: 40px;
+}
+

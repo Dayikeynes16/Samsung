@@ -30,6 +30,10 @@
             @method('DELETE')
               <button onclick="return confirmar()" class="btn btn-danger" type="submit">Eliminar</button></form>
           </th>
+          <th>
+         <a type="button" class="btn btn-primary" href="editproduct/{{$i->codigo}}">Editar</a>
+
+          </th>
         
 
         </tr>
@@ -47,6 +51,8 @@
       <h3>Agregar un producto nuevo</h3>
         <form method="POST"  action="/addproduct">
           @csrf
+            <label for="">Ingrese el codigo</label>
+            <input class="form-control" type="number" name="codigo">
             <label for="">Ingrese un Nombre</label>
             <input  class="form-control" @error('nombre') is-invalid @enderror type="text" name="nombre" id="">
              @error('nombre')
