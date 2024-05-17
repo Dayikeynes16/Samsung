@@ -18,9 +18,9 @@ class BarcodeController extends Controller
     function barcode(){
         
         $venta = Venta::firstOrCreate(
-            ['finalizada' => false, 'abierta' => true],
+            ['finalizada' => false, 'abierta' => true,'operador' => 10, ],
             [
-                'operador' => null, 
+                'operador' => 10, 
                 'total' => 0.00, 
                 'metodo_de_pago' => 'efectivo' 
             ]
@@ -40,6 +40,7 @@ class BarcodeController extends Controller
     function addingbarcode(request $request){
         $venta = Venta::where('finalizada', false )
                         ->where('abierta', true)
+                        ->where('operador', 10)
                         ->first(); 
 
         $idproducto = $request->input('producto');

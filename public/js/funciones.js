@@ -19,13 +19,14 @@ function calcularCambio() {
 document.addEventListener('DOMContentLoaded', function() {
     
     fetchVentas();
-    setInterval(fetchVentas, 2000); 
+    setInterval(fetchVentas, 1000); 
 
     function fetchVentas() {
         fetch('/get-ventas')
         .then(response => response.json())
         .then(data => {
             createButtonsForVentas(data);
+            console.log(data);
         })
         .catch(error => {
             console.error('Error fetching ventas:', error);

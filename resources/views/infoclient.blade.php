@@ -36,7 +36,7 @@
                         @endforeach
                     </select>
                     <label for="">Ingrese el precio</label>
-                    <input name="precio" class="form-control" type="number">
+                    <input name="precio" class="form-control" type="decimal">
                     <button type="submit" class="btn btn-primary">Guardar</button>
                 </form>
             </div>

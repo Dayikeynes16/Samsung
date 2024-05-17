@@ -36,7 +36,7 @@
                 @foreach ($clientes as $cliente)
                 <tr class="items1">
                     <td class="items">{{$cliente->nickname}}</td>
-                    <td class="items">{{$cliente->name}}</td>
+                    <td class="items">{{$cliente->nombre}}</td>
                     <td class="items"><a type="button" class="btn btn-warning" href="/infoclient/{{$cliente->id}}">info</a></td>
                 </tr>
                 @endforeach

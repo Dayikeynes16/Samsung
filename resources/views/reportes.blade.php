@@ -10,8 +10,8 @@
         
         <div class="boxPapi">
             <div class="boxes">  <h3>Venta total:</h3> <h3>${{$total}}</h3> </div>
-            <div class="boxes">  <h3>Venta con efectivo:</h3>  <h3>{{$tarjeta}}</h3></div>
-            <div class="boxes">  <h3>Venta con tarjeta:</h3>  <h3>{{$efectivo}}</h3> </div>
+            <div class="boxes">  <h3>Venta con efectivo:</h3> <h3>{{$efectivo}}</h3></div>
+            <div class="boxes">  <h3>Venta con tarjeta:</h3> <h3>{{$tarjeta}}</h3>   </div>
             <div class="boxes">  <h3>Venta con transferencia:</h3> <h3>{{$transferencias}}</h3> </div>
         </div>
 

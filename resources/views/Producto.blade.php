@@ -4,12 +4,13 @@
 @section('title','Información del cliente')
 
 @section('content')
-
+<div class ="tiket">
 <div class="card" style="display: flex !important;">
      <div class="formularios" style="padding: 20px">
         <h3>Venta id: {{$venta->id}}</h3>
         <h4>Fecha: {{$venta->fecha}}</h4> 
         <h4>Total {{$venta->total}}</h4>
+        <h4>Cliente </h4>
     </div>
 
     <table>
@@ -47,5 +48,8 @@
         </tbody>
     </table>
 </div>
+</div>
+
+
 
 @endsection

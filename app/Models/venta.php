@@ -12,6 +12,7 @@ class Venta extends Model
     protected $fillable = ['operador', 'total', 'abierta', 'finalizada', 'metodo_de_pago', 'fecha','cliente'];
 
     protected $table = 'ventas';  
+    protected $primarykey = 'id';
     public $timestamps = false;
 
     public function productoventas(){    

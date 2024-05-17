@@ -13,7 +13,7 @@ class HomeController extends Controller
     //
     function welcome() {
         $ventas = Venta::with(['productoventas.producto']) // Carga anticipada de productos a través de ProductoVenta
-                       ->where('operador', 4)
+                       
                        ->where('abierta', 0)
                        ->get();
 
@@ -35,6 +35,7 @@ class HomeController extends Controller
             ];
         });
         return view('welcome', ['ventas' => $ventasArray, 'clientes' => $clientes]);
+        
     }
     function home (){
         return view ('home');
@@ -44,7 +45,7 @@ class HomeController extends Controller
     }
     public function getVentasAjax() {
         $ventas = Venta::with(['productoventas.producto']) // Carga anticipada de productos
-                       ->where('operador', 4)
+                       ->where('finalizada', 0)
                        ->where('abierta', 0)
                        ->get();
     

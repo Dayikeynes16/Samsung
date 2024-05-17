@@ -79,7 +79,7 @@ function savediscount(Request $request){
         return redirect()->route('infoclient',$id);
     }
     function ventadetalles($id){
-        $venta = Venta::with('productoventas.producto')->find($id);
+        $venta = Venta::with('productoventas.producto','cliente')->find($id);
         return view('Producto',['venta'=>$venta]);
     }
 
